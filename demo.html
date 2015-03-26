@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>LeanEvent</title>
+    </head>
+    <body>
+        <script src="leanEvent.js"></script>
+        <script type="text/javascript">
+        var eventCenter = leanEvent();
+        
+        var fun = function() {
+            console.log('123');
+        };
+
+        // bind a event
+        eventCenter.on('lean1', fun);
+
+        // bind a event once
+        eventCenter.once('lean2', fun);
+
+        // Remove bind
+        eventCenter.off('lean2', fun);
+
+        // emit event
+        eventCenter.emit('lean1');
+        eventCenter.emit('lean2');
+        </script>
+    </body>
+</html>
