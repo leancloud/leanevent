@@ -13,8 +13,8 @@ void function(win) {
 
     // AMD support
     if (typeof define === 'function' && define.amd) {
-        define('AV', [], function() {
-            return AV;
+        define('leanEvent', [], function() {
+            return leanEvent;
         });
     }
 
