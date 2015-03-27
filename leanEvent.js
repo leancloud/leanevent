@@ -6,20 +6,21 @@
  * Each engineer has a duty to keep the code elegant
  */
 
-void function(win) {
+void function() {
 
     // version
     var VERSION = '1.0.0';
+    var exports = this;
 
     // AMD support
     if (typeof define === 'function' && define.amd) {
-        define('leanEvent', [], function() {
+        define(function() {
             return leanEvent;
         });
     }
 
     // namespace leanEvent
-    win.leanEvent = function() {
+    var leanEvent = function() {
         var eventList = {};
         var eventOnceList = {};
 
@@ -34,7 +35,7 @@ void function(win) {
             var tempList;
             if (!isOnce) {
                 tempList = eventList;
-            } 
+            }
             else {
                 tempList = eventOnceList;
             }
@@ -47,7 +48,7 @@ void function(win) {
                 }
             }
         };
-        
+
         var _off = function(eventName, fun, isOnce) {
             var tempList;
             if (!isOnce) {
@@ -129,6 +130,7 @@ void function(win) {
         };
     };
 
-    win.leanEvent.version = VERSION;
+    leanEvent.version = VERSION;
+    exports.leanEvent = leanEvent;
 
-}(window);
+}(this);
