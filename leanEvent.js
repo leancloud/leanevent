@@ -107,7 +107,7 @@ void function(win) {
                             eventList[eventName][i].call(this, data);
                         }
                     }
-                    cleanNull(eventList[eventName]);
+                    eventList[eventName] = cleanNull(eventList[eventName]);
                 }
                 if (eventOnceList[eventName]) {
                     i = 0;
@@ -118,7 +118,7 @@ void function(win) {
                             _off(eventName, eventOnceList[eventName][i], true);
                         }
                     }
-                    cleanNull(eventOnceList[eventName]);
+                    eventOnceList[eventName] = cleanNull(eventOnceList[eventName]);
                 }
                 return this;
             },
