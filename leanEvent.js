@@ -12,13 +12,6 @@ void function() {
     var VERSION = '1.0.0';
     var exports = this;
 
-    // AMD support
-    if (typeof define === 'function' && define.amd) {
-        define(function() {
-            return leanEvent;
-        });
-    }
-
     // namespace leanEvent
     var leanEvent = function() {
         var eventList = {};
@@ -132,5 +125,14 @@ void function() {
 
     leanEvent.version = VERSION;
     exports.leanEvent = leanEvent;
+
+    // AMD support
+    if (typeof define === 'function' && define.amd) {
+        define(function() {
+            return leanEvent;
+        });
+    } else if (typeof module == 'object' && module.exports) {
+        module.exports = leanEvent;
+    }
 
 }(this);
