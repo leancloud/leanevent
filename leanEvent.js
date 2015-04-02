@@ -87,18 +87,20 @@ void function() {
                 _on(eventName, fun, true);
                 return this;
             },
-            emit: function(eventName, data) {
+            emit: function(eventName) {
                 if (!eventName) {
                     throw('No emit event name.');
                 }
+
                 var i = 0;
                 var l = 0;
+                var args = Array.prototype.slice.call(arguments).slice(1);
                 if (eventList[eventName]) {
                     i = 0;
                     l = eventList[eventName].length;
                     for (; i < l; i ++) {
                         if (eventList[eventName][i]) {
-                            eventList[eventName][i].call(this, data);
+                            eventList[eventName][i].apply(this, args);
                         }
                     }
                     eventList[eventName] = cleanNull(eventList[eventName]);
@@ -108,7 +110,7 @@ void function() {
                     l = eventOnceList[eventName].length;
                     for (; i < l; i ++) {
                         if (eventOnceList[eventName][i]) {
-                            eventOnceList[eventName][i].call(this, data);
+                            eventOnceList[eventName][i].apply(this, args);
                             _off(eventName, eventOnceList[eventName][i], true);
                         }
                     }
